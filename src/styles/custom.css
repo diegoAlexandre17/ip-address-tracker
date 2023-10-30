@@ -1,0 +1,10 @@
+/* custom.css */
+:root {
+  --font-family: "Rubik", sans-serif;
+  --font-size-base: 18px; /* Tamaño de fuente base */
+  --line-height-base: 1.5; /* Altura de línea base */
+  --very-dark-gray: hsl(0, 0%, 17%);
+  --dark-grey: hsl(0, 0%, 30%);
+}
+
+
