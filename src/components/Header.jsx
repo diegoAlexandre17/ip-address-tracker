@@ -10,24 +10,6 @@ const Header = () => {
 
   const [ipInput, setIpInput] = useState(null);
   const [ipData, setIpData] = useState(null);
-  const dataIp = [
-    {
-      title: "IP ADDRESS",
-      text: "192.212.174.101",
-    },
-    {
-      title: "LOCATION",
-      text: "Brooklyn, NY 10001",
-    },
-    {
-      title: "TIMEZONE",
-      text: "UTC-05:00",
-    },
-    {
-      title: "ISP",
-      text: "SPACE X STARLINK",
-    },
-  ];
 
   const { mutate: mutation, isLoading } = useMutation({
     mutationFn: (dataInput) => APIAxios.getIpData(dataInput),
