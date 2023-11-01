@@ -47,7 +47,10 @@ const Header = () => {
 
           <InputGroup>
             <Input
-              type="search"
+              className="custom-input"
+              name="ip_adress"
+              type="number"
+              placeholder="123.456.789.00"
               onChange={(e) => {
                 setIpInput(e.target.value);
               }}
