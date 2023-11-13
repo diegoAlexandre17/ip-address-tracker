@@ -35,7 +35,8 @@ const Header = () => {
     },
   });
 
-  const handleSearchIp = () => {
+  const handleSearchIp = (e) => {
+    e.preventDefault()
     return mutation(ipInput);
   };
 
@@ -44,20 +45,21 @@ const Header = () => {
       <div className="header-bg-img py-5 d-flex flex-column align-items-center justify-content-center">
         <div className="w-50 ">
           <h1 className="text-white text-center">IP Address Tracker</h1>
-
-          <InputGroup>
-            <Input
-              name="ip_adress"
-              type='search'
-              placeholder="123.456.789.00"
-              onChange={(e) => {
-                setIpInput(e.target.value);
-              }}
-            />
-            <Button className="bg-very-dark-gray" onClick={handleSearchIp}>
-              <img src={iconArrow} alt="Icono" className="py-1" />
-            </Button>
-          </InputGroup>
+          <form onSubmit={handleSearchIp}>
+            <InputGroup>
+              <Input
+                name="ip_adress"
+                type="search"
+                placeholder="123.456.789.00"
+                onChange={(e) => {
+                  setIpInput(e.target.value);
+                }}
+              />
+              <Button className="bg-very-dark-gray" type="submit" disabled={isLoading}>
+                <img src={iconArrow} alt="Icono" className="py-1" />
+              </Button>
+            </InputGroup>
+          </form>
         </div>
       </div>
 
