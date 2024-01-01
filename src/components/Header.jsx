@@ -5,6 +5,7 @@ import IpInfo from "./IpInfo";
 import IPAPI from "../api/API";
 import { useMutation } from "react-query";
 import Map from "./Map";
+import SpinnerLoader from "./SpinnerLoader";
 
 const Header = () => {
   const APIAxios = new IPAPI();
@@ -43,6 +44,8 @@ const Header = () => {
     if (ipInput) {
       mutation(ipInput);
     }
+    setLocation(null)
+    setIpData(null);
   };
 
   return (
@@ -74,7 +77,7 @@ const Header = () => {
       </div>
 
       {ipData && <IpInfo ipInfo={ipData} />}
-      {location && <Map location={location} />}
+      {location ? <Map location={location} /> : isLoading ? <SpinnerLoader/> : null}
     </>
   );
 };
