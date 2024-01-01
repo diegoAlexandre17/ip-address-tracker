@@ -67,7 +67,7 @@ const Header = () => {
               <Button
                 className="bg-very-dark-gray"
                 type="submit"
-                disabled={isLoading}
+                disabled={isLoading || !ipInput}
               >
                 <img src={iconArrow} alt="Icono" className="py-1" />
               </Button>
