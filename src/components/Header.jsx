@@ -4,16 +4,19 @@ import iconArrow from "../../public/icon-arrow.svg";
 import IpInfo from "./IpInfo";
 import IPAPI from "../api/API";
 import { useMutation } from "react-query";
+import Map from "./Map";
 
 const Header = () => {
   const APIAxios = new IPAPI();
 
   const [ipInput, setIpInput] = useState(null);
   const [ipData, setIpData] = useState(null);
+  const [location, setLocation] = useState("");
 
   const { mutate: mutation, isLoading } = useMutation({
     mutationFn: (dataInput) => APIAxios.getIpData(dataInput),
     onSuccess: (data) => {
+      setLocation({ lat: data.location.lat, lng: data.location.lng });
       setIpData([
         {
           title: "IP ADDRESS",
@@ -36,18 +39,21 @@ const Header = () => {
   });
 
   const handleSearchIp = (e) => {
-    e.preventDefault()
-    return mutation(ipInput);
+    e.preventDefault();
+    if (ipInput) {
+      mutation(ipInput);
+    }
   };
 
   return (
     <>
-      <div className="header-bg-img py-5 d-flex flex-column align-items-center justify-content-center">
-        <div className="w-50 ">
+      <div className="header-bg-img py-5 d-flex flex-column align-items-center ">
+        <div className="w-50">
           <h1 className="text-white text-center">IP Address Tracker</h1>
           <form onSubmit={handleSearchIp}>
-            <InputGroup>
+            <InputGroup className="d-flex justify-content-center">
               <Input
+                className="search-btn p-2"
                 name="ip_adress"
                 type="search"
                 placeholder="123.456.789.00"
@@ -55,7 +61,11 @@ const Header = () => {
                   setIpInput(e.target.value);
                 }}
               />
-              <Button className="bg-very-dark-gray" type="submit" disabled={isLoading}>
+              <Button
+                className="bg-very-dark-gray"
+                type="submit"
+                disabled={isLoading}
+              >
                 <img src={iconArrow} alt="Icono" className="py-1" />
               </Button>
             </InputGroup>
@@ -63,11 +73,8 @@ const Header = () => {
         </div>
       </div>
 
-      {ipData && (
-        <div className="d-flex justify-content-center bg-info mt-n5">
-          <IpInfo ipInfo={ipData} />
-        </div>
-      )}
+      {ipData && <IpInfo ipInfo={ipData} />}
+      {location && <Map location={location} />}
     </>
   );
 };

@@ -3,7 +3,10 @@ import { Col, Row } from "reactstrap";
 
 const IpInfo = ({ ipInfo }) => {
   return (
-    <Row className="w-75 border rounded my-5 bg-white" data-aos="fade-right">
+    <Row
+      className="w-75 border rounded my-5 bg-white ipInfo"
+      data-aos="fade-right"
+    >
       {ipInfo.map((item, index) => {
         return (
           <Col md="6" lg="3" key={index} className="border-start">
