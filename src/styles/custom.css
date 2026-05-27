@@ -1,10 +1,52 @@
 /* custom.css */
 :root {
   --font-family: "Rubik", sans-serif;
-  --font-size-base: 18px; /* Tamaño de fuente base */
-  --line-height-base: 1.5; /* Altura de línea base */
+  --font-size-base: 18px;
+  --line-height-base: 1.5;
   --very-dark-gray: hsl(0, 0%, 17%);
   --dark-grey: hsl(0, 0%, 30%);
 }
 
+/* Map animations */
+@keyframes mapFadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
+@keyframes mapFadeOutDown {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(24px); }
+}
+
+.map-enter { animation: mapFadeInUp  0.4s ease forwards; }
+.map-exit  { animation: mapFadeOutDown 0.4s ease forwards; }
+
+/* Help icon */
+.help-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  flex-shrink: 0;
+  user-select: none;
+  transition: background 0.2s;
+}
+
+.help-icon:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.help-tooltip p {
+  margin: 0;
+}
+
+.help-tooltip p + p {
+  margin-top: 6px;
+}

@@ -12,6 +12,13 @@ body {
   min-height: 15rem;
 }
 
+.header-full-height {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .bg-very-dark-gray {
   background-color: var(--very-dark-gray);
 }
@@ -33,12 +40,12 @@ body {
   appearance: textfield;
 }
 
-.leaflet-container{
+.leaflet-container {
   max-width: 100vw;
   height: 80vh;
 }
 
-.ipInfo{
+.ipInfo {
   position: absolute;
   left: 15%;
   top: 8rem;
@@ -47,25 +54,75 @@ body {
   z-index: 9999;
 }
 
-.search-btn{
+.search-btn {
   max-width: 25rem;
+}
+
+@keyframes mapFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mapFadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+.map-enter {
+  animation: mapFadeInUp 0.4s ease forwards;
+}
+
+.map-exit {
+  animation: mapFadeOutDown 0.4s ease forwards;
 }
 
 /* HTML: <div class="loader"></div> */
 .loader {
   width: 60px;
   aspect-ratio: 2;
-  --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
-  background: 
-    var(--_g) 0%   50%,
-    var(--_g) 50%  50%,
+  --_g: no-repeat radial-gradient(circle closest-side, #000 90%, #0000);
+  background:
+    var(--_g) 0% 50%,
+    var(--_g) 50% 50%,
     var(--_g) 100% 50%;
-  background-size: calc(100%/3) 50%;
+  background-size: calc(100% / 3) 50%;
   animation: l3 1s infinite linear;
 }
 @keyframes l3 {
-    20%{background-position:0%   0%, 50%  50%,100%  50%}
-    40%{background-position:0% 100%, 50%   0%,100%  50%}
-    60%{background-position:0%  50%, 50% 100%,100%   0%}
-    80%{background-position:0%  50%, 50%  50%,100% 100%}
+  20% {
+    background-position:
+      0% 0%,
+      50% 50%,
+      100% 50%;
+  }
+  40% {
+    background-position:
+      0% 100%,
+      50% 0%,
+      100% 50%;
+  }
+  60% {
+    background-position:
+      0% 50%,
+      50% 100%,
+      100% 0%;
+  }
+  80% {
+    background-position:
+      0% 50%,
+      50% 50%,
+      100% 100%;
+  }
 }
